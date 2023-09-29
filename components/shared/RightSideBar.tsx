@@ -4,19 +4,19 @@ import React from 'react'
 import RenderTag from './RenderTag';
 
 const hotQuestion = [
-    { _id: 1, title: 'How do I use express as a custom server in NextJS' },
-    { _id: 2, title: 'Cascading Deletes in SQL Alchemy' },
-    { _id: 3, title: 'How to perfectly center a Div in Tailwind CSS' },
-    { _id: 4, title: 'How do I use express as a custom server in NextJS' },
-    { _id: 5, title: 'Redux Toolkit not updating state as expected' },
+    { _id: '1', title: 'How do I use express as a custom server in NextJS' },
+    { _id: '2', title: 'Cascading Deletes in SQL Alchemy' },
+    { _id: '3', title: 'How to perfectly center a Div in Tailwind CSS' },
+    { _id: '4', title: 'How do I use express as a custom server in NextJS' },
+    { _id: '5', title: 'Redux Toolkit not updating state as expected' },
 ];
 
 const popularTags = [
-    { _id: 1, name: 'Javascript', totalQuestions: 5 },
-    { _id: 2, name: 'NextJS', totalQuestions: 2 },
-    { _id: 3, name: 'React', totalQuestions: 3 },
-    { _id: 4, name: 'Redux', totalQuestions: 1 },
-    { _id: 5, name: 'Remix', totalQuestions: 4 },
+    { _id: '1', name: 'Javascript', totalQuestions: 5 },
+    { _id: '2', name: 'NextJS', totalQuestions: 2 },
+    { _id: '3', name: 'React', totalQuestions: 3 },
+    { _id: '4', name: 'Redux', totalQuestions: 1 },
+    { _id: '5', name: 'Remix', totalQuestions: 4 },
 ];
 
 const RightSideBar = () => {
@@ -49,11 +49,11 @@ const RightSideBar = () => {
                 <div className='mt-7 flex flex-col gap-4 '>
                     {popularTags.map((tag) => (
                         <RenderTag
-                          key={tag._id}
-                          _id={tag._id}
-                          name={tag.name}
-                          totalQuestions={tag.totalQuestions}
-                          showCount
+                            key={tag._id}
+                            _id={tag._id}
+                            name={tag.name}
+                            totalQuestions={tag.totalQuestions}
+                            showCount
                         />
                     ))}
                 </div>
