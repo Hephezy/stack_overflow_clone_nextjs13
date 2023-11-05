@@ -15,6 +15,7 @@ import React from 'react'
 const Page = async ({ params }) => {
 
   const result = await getQuestionById({ questionId: params.id });
+
   const { userId: clerkId } = auth();
 
   let mongoUser;
@@ -42,7 +43,16 @@ const Page = async ({ params }) => {
             <p className='paragraph-semibold text-dark300_light700'>{result.author.name}</p>
           </Link>
           <div className='flex justify-end'>
-            <Votes />
+            <Votes 
+              type="Question"
+              itemId={JSON.stringify(result._id)}
+              userId={JSON.stringify(mongoUser._id)}
+              upVotes={result.upVotes?.length}
+              hasupVoted={result.upVotes.includes(mongoUser._id)}
+              downVotes={result.downVotes?.length}
+              hasdownVoted={result.downVotes.includes(mongoUser._id)}
+              hasSaved={mongoUser?.saved?.includes(result._id)}
+            />
           </div>
         </div>
         <h2 className='h2-semibold text-dark200_light900 mt-3.5 w-full text-left'>
@@ -89,7 +99,7 @@ const Page = async ({ params }) => {
 
       <AllAnswers 
         questionId={result._id}
-        userId={JSON.stringify(mongoUser._id)}
+        userId={mongoUser._id}
         totalAnswers={result.answers.length}
       />
 

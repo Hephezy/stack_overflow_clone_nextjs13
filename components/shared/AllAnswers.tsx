@@ -41,7 +41,7 @@ const AllAnswers = async ({ questionId, userId, totalAnswers, page, filter }: Pr
                         className='light-border border-b py-10'
                     >
                         <div className='flex items-center justify-between'>
-                            <div className='mb-8 flex flex-col-reverse justify-between gap-5 sm:flex-row sm:items-center sm:gap-2'>
+                            <div className='mb-8 flex w-full flex-col-reverse justify-between gap-5 sm:flex-row sm:items-center sm:gap-2'>
                                 <Link
                                     href={`/profile/${answer.author.clerkId}`}
                                     className='flex flex-1 items-start gap-1 sm:items-center'
@@ -63,7 +63,15 @@ const AllAnswers = async ({ questionId, userId, totalAnswers, page, filter }: Pr
                                     </div>
                                 </Link>
                                 <div className='flex justify-end'>
-                                    <Votes />
+                                    <Votes
+                                        type="Answer"
+                                        itemId={JSON.stringify(answer._id)}
+                                        userId={JSON.stringify(userId)}
+                                        upVotes={answer.upVotes?.length}
+                                        hasupVoted={answer.upVotes.includes(userId)}
+                                        downVotes={answer.downVotes?.length}
+                                        hasdownVoted={answer.downVotes.includes(userId)}
+                                    />
                                 </div>
                             </div>
 
