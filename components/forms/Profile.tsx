@@ -68,11 +68,11 @@ const Profile = ({ clerkId, user }: Props) => {
                     name="name"
                     render={({ field }) => (
                         <FormItem className="space-y-3.5">
-                            <FormLabel>
+                            <FormLabel className="text-dark400_light700">
                                 Name
                                 <span className="text-primary-500">*</span>
                             </FormLabel>
-                            <FormControl>
+                            <FormControl className="text-dark400_light700">
                                 <Input
                                     placeholder="Your name"
                                     className="no-focus paragraph-regular light-border-2 background-light700_dark300 text-dark300_light700 min-h-[50px] border"
@@ -88,7 +88,7 @@ const Profile = ({ clerkId, user }: Props) => {
                     name="username"
                     render={({ field }) => (
                         <FormItem className="space-y-3.5">
-                            <FormLabel>
+                            <FormLabel className="text-dark400_light700">
                                 Username
                                 <span className="text-primary-500">*</span>
                             </FormLabel>
@@ -108,7 +108,7 @@ const Profile = ({ clerkId, user }: Props) => {
                     name="portfolioWebsite"
                     render={({ field }) => (
                         <FormItem className="space-y-3.5">
-                            <FormLabel>
+                            <FormLabel className="text-dark400_light700">
                                 Portfolio Link
                             </FormLabel>
                             <FormControl>
@@ -128,7 +128,7 @@ const Profile = ({ clerkId, user }: Props) => {
                     name="location"
                     render={({ field }) => (
                         <FormItem className="space-y-3.5">
-                            <FormLabel>
+                            <FormLabel className="text-dark400_light700">
                                 Location
                             </FormLabel>
                             <FormControl>
@@ -147,7 +147,7 @@ const Profile = ({ clerkId, user }: Props) => {
                     name="bio"
                     render={({ field }) => (
                         <FormItem className="space-y-3.5">
-                            <FormLabel>
+                            <FormLabel className="text-dark400_light700">
                                 Bio
                                 <span className="text-primary-500">*</span>
                             </FormLabel>

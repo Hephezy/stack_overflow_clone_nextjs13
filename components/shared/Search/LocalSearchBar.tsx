@@ -49,7 +49,7 @@ const LocalSearchBar = ({ route, iconPosition, imgSrc, placeholder, otherClasses
         }, 300)
 
         return () => clearTimeout(delayDebounceFn);
-    }, [search, router, pathname, searchParams, query])
+    }, [search, router, pathname, searchParams, query, route])
 
 
     return (
