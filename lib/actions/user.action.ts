@@ -8,6 +8,8 @@ import { revalidatePath } from "next/cache";
 import Question from "@/database/question.model";
 import Tag from "@/database/tag.model";
 import Answer from "@/database/answer.model";
+import { BadgeCriteriaType } from "@/types";
+import { assignBadges } from "../utils";
 
 export async function getUserById(params: any) {
   try {
@@ -244,10 +246,39 @@ export async function getUserInfo(params: GetUserByIdParams){
     const totalQuestions = await Question.countDocuments({ author: user._id });
     const totalAnswers = await Answer.countDocuments({ author: user._id });
 
+    const [questionUpvotes] = await Question.aggregate([
+      { $match: { author: user._id}},
+      { $project: { _id: 0, upvotes: { $size: "$upVotes"}}},
+      { $group: { _id: null, totalUpvotes: { $sum: "$upVotes"}}},
+    ]);
+
+    const [answerUpvotes] = await Answer.aggregate([
+      { $match: { author: user._id } },
+      { $project: { _id: 0, upvotes: { $size: "$upVotes" } } },
+      { $group: { _id: null, totalUpvotes: { $sum: "$upVotes" } } },
+    ]);
+
+    const [questionViews] = await Question.aggregate([
+      { $match: { author: user._id } },
+      { $group: { _id: null, totalViews: { $sum: "$views" } } },
+    ]);
+
+    const criteria = [
+      { type: 'QUESTION_COUNT' as BadgeCriteriaType, count: totalQuestions},
+      { type: 'ANSWER_COUNT' as BadgeCriteriaType, count: totalAnswers},
+      { type: 'QUESTION_UPVOTES' as BadgeCriteriaType, count: questionUpvotes?.totalUpVotes || 0},
+      { type: 'ANSWER_COUNT' as BadgeCriteriaType, count: answerUpvotes?.totalUpVotes || 0},
+      { type: 'QUESTION_COUNT' as BadgeCriteriaType, count: questionViews?.totalView || 0},
+    ]
+
+    const badgeCount = assignBadges({ criteria });
+
     return {
       user,
       totalAnswers,
       totalQuestions,
+      badgeCount,
+      reputation: user.reputation,
     }
   } catch (error) {
     console.log(error);
@@ -266,7 +297,7 @@ export async function getUserQuestions(params: GetUserStatsParams){
     const totalQuestions = await Question.countDocuments({ author: userId });
 
     const userQuestions = await Question.find({ author: userId })
-      .sort({ views: -1, upVotes: -1 })
+      .sort({ createdAt: -1, views: -1, upVotes: -1 })
       .skip(skipAmount)
       .limit(pageSize)
       .populate('tags', '_id name')
