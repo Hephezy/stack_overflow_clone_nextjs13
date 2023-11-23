@@ -9,7 +9,7 @@ import EditDeleteAction from '../shared/EditDeleteAction';
 interface QuestionProps {
     _id: string;
     title: string;
-    clerkId?: string;
+    clerkId?: string | null;
     tags: {
         _id: string;
         name: string;
@@ -18,6 +18,7 @@ interface QuestionProps {
         _id: string;
         name: string;
         picture: string;
+        clerkId: string;
     }
     upVotes: string[];
     views: number;
@@ -54,12 +55,12 @@ const QuestionCard = ({
                 </div>
 
                 <SignedIn>
-                  {showActionButtons && (
-                    <EditDeleteAction 
-                      type="Question"
-                      itemId={JSON.stringify(_id)}
-                    />
-                  )}  
+                    {showActionButtons && (
+                        <EditDeleteAction
+                            type="Question"
+                            itemId={JSON.stringify(_id)}
+                        />
+                    )}
                 </SignedIn>
             </div>
 
@@ -83,27 +84,30 @@ const QuestionCard = ({
                     isAuthor
                     textStyle="body-medium text-dark400_light700"
                 />
-                <Metric
-                    imgUrl='/assets/icons/like.svg'
-                    alt='upVotes'
-                    value={formatAndDivideNumber(upVotes.length)}
-                    title=' Votes'
-                    textStyle="small-medium text-dark400_light800"
-                />
-                <Metric
-                    imgUrl='/assets/icons/message.svg'
-                    alt='message'
-                    value={formatAndDivideNumber(answers.length)}
-                    title=' Answers'
-                    textStyle="small-medium text-dark400_light800"
-                />
-                <Metric
-                    imgUrl='/assets/icons/eye.svg'
-                    alt='eye'
-                    value={formatAndDivideNumber(views)}
-                    title=' Views'
-                    textStyle="small-medium text-dark400_light800"
-                />
+
+                <div className='flex items-center gap-3 max-sm:flex-wrap max-sm:justify-start'>
+                    <Metric
+                        imgUrl='/assets/icons/like.svg'
+                        alt='upVotes'
+                        value={formatAndDivideNumber(upVotes.length)}
+                        title=' Votes'
+                        textStyle="small-medium text-dark400_light800"
+                    />
+                    <Metric
+                        imgUrl='/assets/icons/message.svg'
+                        alt='message'
+                        value={formatAndDivideNumber(answers.length)}
+                        title=' Answers'
+                        textStyle="small-medium text-dark400_light800"
+                    />
+                    <Metric
+                        imgUrl='/assets/icons/eye.svg'
+                        alt='eye'
+                        value={formatAndDivideNumber(views)}
+                        title=' Views'
+                        textStyle="small-medium text-dark400_light800"
+                    />
+                </div>
             </div>
 
         </div>
