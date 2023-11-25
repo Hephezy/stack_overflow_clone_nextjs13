@@ -12,6 +12,7 @@ import { Button } from '../ui/button';
 import Image from 'next/image';
 import { createAnswer } from '@/lib/actions/answer.action';
 import { usePathname } from 'next/navigation';
+import { toast } from '../ui/use-toast';
 
 interface Props {
   question: string;
@@ -50,7 +51,7 @@ const Answer = ({ question, questionId, authorId }: Props) => {
 
       form.reset();
 
-      if(editorRef.current) {
+      if (editorRef.current) {
         const editor = editorRef.current as any;
 
         editor.setContent('');
@@ -75,8 +76,7 @@ const Answer = ({ question, questionId, authorId }: Props) => {
       })
 
       const aiAnswer = await response.json();
-      console.log(aiAnswer);
-      
+
       // Convert plain text to HTML format
 
       const formattedAnswer = aiAnswer.reply.replace(/\n/g, '<br />');
@@ -86,7 +86,9 @@ const Answer = ({ question, questionId, authorId }: Props) => {
         editor.setContent(formattedAnswer);
       }
 
-      // Toast...
+      toast({
+        title: "Successfully generated AI answer"
+      });
     } catch (error) {
       console.log(error);
     } finally {
