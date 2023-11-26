@@ -49,7 +49,7 @@ export async function getCountryFlags(params: FlagProps) {
 
 export async function getUserLocation() {
   try {
-    const response = await fetch("http://ip-api.com/json/", {
+    const response = await fetch("http://ip-api.com/json/?fields=country", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -58,6 +58,7 @@ export async function getUserLocation() {
 
     const responseLocation = await response.json();
     const location = responseLocation.country;
+    console.log({location});
 
     return location;
   } catch (error) {

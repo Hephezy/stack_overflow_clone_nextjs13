@@ -12,6 +12,7 @@ interface JobsProps {
     employmentType: string;
     minSalary: number;
     maxSalary: number;
+    currency: string;
     link: string;
 }
 
@@ -26,6 +27,7 @@ const JobCard = ({
     employmentType,
     minSalary,
     maxSalary,
+    currency,
     link
 }: JobsProps) => {
 
@@ -33,7 +35,7 @@ const JobCard = ({
         if (minSalary === null || maxSalary === null || minSalary === undefined || maxSalary === undefined) {
             return <p className='body-medium text-light-500'>Not disclosed</p>;
         } else {
-            return <p className='body-medium text-light-500'>{`${minSalary}-${maxSalary}`}</p>;
+            return <p className='body-medium text-light-500'>{`${minSalary}-${maxSalary} ${currency}`}</p>;
         }
     };
 

@@ -14,8 +14,6 @@ const Page = async ({ searchParams }: SearchParamsProps) => {
         country: searchParams.location || userLocation,
     });
 
-    console.log(JSON.stringify(flag));
-
     let result;
 
     if (!searchParams.q && searchParams.location) {
@@ -75,6 +73,7 @@ const Page = async ({ searchParams }: SearchParamsProps) => {
                             employmentType={item.job_employment_type}
                             minSalary={item.job_min_salary}
                             maxSalary={item.job_max_salary}
+                            currency={item.job_salary_currency}
                             link={item.job_apply_link}
                         />
                     ))
