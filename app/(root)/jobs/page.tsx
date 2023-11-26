@@ -2,14 +2,14 @@ import JobCard from '@/components/cards/JobCard';
 import CountryFilter from '@/components/shared/CountryFilter';
 import Pagination from '@/components/shared/Pagination';
 import JobSearchBar from '@/components/shared/Search/JobSearchBar';
-import { getCountryFilters, getCountryFlags, getUserLocation } from '@/lib/actions/filter.action';
+import { getCountryFilters, getCountryFlags, getUsersLocation } from '@/lib/actions/filter.action';
 import { getJobs } from '@/lib/actions/job.action';
 import { SearchParamsProps } from '@/types';
 
 const Page = async ({ searchParams }: SearchParamsProps) => {
 
     const countryFilters = await getCountryFilters();
-    const userLocation = await getUserLocation();
+    const userLocation = await getUsersLocation();
     const flag = await getCountryFlags({
         country: searchParams.location || userLocation,
     });
