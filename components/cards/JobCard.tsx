@@ -49,8 +49,8 @@ const JobCard = ({
                         width={20}
                         height={20}
                     />
-                    <p className='body-medium text-dark400_light700'>{city}</p>
-                    <p className='body-medium text-dark400_light700'>{state}</p>
+                    <h1 className='body-medium text-dark400_light700'>{city}</h1>
+                    <h2 className='body-medium text-dark400_light700'>{state}</h2>
                     <p className='body-medium text-dark400_light700'>{country}</p>
                 </div>
             </div>
@@ -79,14 +79,14 @@ const JobCard = ({
                                 height={20}
                                 className='rounded-full'
                             />
-                            <p className='body-medium text-dark400_light700'>{city}</p>
-                            <p className='body-medium text-dark400_light700'>{state}</p>
+                            <h1 className='body-medium text-dark400_light700'>{city}</h1>
+                            <h2 className='body-medium text-dark400_light700'>{state}</h2>
                             <p className='body-medium text-dark400_light700'>{country}</p>
                         </div>
                     </div>
                 </div>
 
-                <p className='body-regular text-dark500_light700 mt-2 line-clamp-2'>
+                <p className='body-regular text-dark500_light700 mt-2 line-clamp-2 max-w-[90%]'>
                     {description}
                 </p>
 

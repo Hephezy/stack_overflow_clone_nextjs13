@@ -2,14 +2,14 @@ import JobCard from '@/components/cards/JobCard';
 import CountryFilter from '@/components/shared/CountryFilter';
 import Pagination from '@/components/shared/Pagination';
 import JobSearchBar from '@/components/shared/Search/JobSearchBar';
-import { getCountryFilters, getCountryFlags, getUsersLocation } from '@/lib/actions/filter.action';
+import { getCountryFilters, getCountryFlags, getUserLocation } from '@/lib/actions/filter.action';
 import { getJobs } from '@/lib/actions/job.action';
 import { SearchParamsProps } from '@/types';
 
 const Page = async ({ searchParams }: SearchParamsProps) => {
 
     const countryFilters = await getCountryFilters();
-    const userLocation = await getUsersLocation();
+    const userLocation = await getUserLocation();
     const flag = await getCountryFlags({
         country: searchParams.location || userLocation,
     });
@@ -24,7 +24,7 @@ const Page = async ({ searchParams }: SearchParamsProps) => {
         });
     } else if (!searchParams.location) {
         result = await getJobs({
-            query: searchParams.q ? `${searchParams.q}` : `All Jobs in ${userLocation}`,
+            query: `All Jobs in ${userLocation}`,
             location: userLocation,
             page: searchParams.page ? +searchParams.page : 1,
         });
