@@ -67,22 +67,22 @@ export async function getUserLocation() {
   }
 }
 
-export async function getUsersLocation() {
-  try {
-    const response = await fetch(
-      `https://api.geoapify.com/v1/ipinfo?&apiKey=${process.env.NEXT_LOCATION_API_KEY}`,
-      {
-        method: "GET",
-      }
-    );
+// export async function getUsersLocation() {
+//   try {
+//     const response = await fetch(
+//       `https://api.geoapify.com/v1/ipinfo?&apiKey=${process.env.NEXT_LOCATION_API_KEY}`,
+//       {
+//         method: "GET",
+//       }
+//     );
 
-      const responseLocation = await response.json();
-      const location = responseLocation.country.name;
+//       const responseLocation = await response.json();
+//       const location = responseLocation.country.name;
 
-      console.log({location});
+//       console.log({location});
 
-      return location;
-  } catch (error) {
-    console.log(error);
-  }
-}
+//       return location;
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }

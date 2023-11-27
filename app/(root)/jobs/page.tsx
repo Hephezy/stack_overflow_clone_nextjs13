@@ -1,3 +1,4 @@
+
 import JobCard from '@/components/cards/JobCard';
 import CountryFilter from '@/components/shared/CountryFilter';
 import Pagination from '@/components/shared/Pagination';
@@ -7,7 +8,7 @@ import { getJobs } from '@/lib/actions/job.action';
 import { SearchParamsProps } from '@/types';
 
 const Page = async ({ searchParams }: SearchParamsProps) => {
-
+    "use client"
     const countryFilters = await getCountryFilters();
     const userLocation = await getUserLocation();
     const flag = await getCountryFlags({
