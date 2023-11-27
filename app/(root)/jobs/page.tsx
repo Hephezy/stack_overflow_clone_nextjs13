@@ -24,7 +24,7 @@ const Page = async ({ searchParams }: SearchParamsProps) => {
         });
     } else if (!searchParams.location) {
         result = await getJobs({
-            query: `All Jobs in ${userLocation}`,
+            query: `All Jobs in`,
             location: userLocation,
             page: searchParams.page ? +searchParams.page : 1,
         });
